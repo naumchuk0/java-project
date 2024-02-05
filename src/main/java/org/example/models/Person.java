@@ -1,20 +1,31 @@
-package org.example;
+package org.example.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Person implements Comparable {
+import javax.persistence.*;
 
+@Data
+@Entity
+@Table(name="tbl_persons")
+public class Person implements Comparable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name="firstName", length = 255, nullable = false)
     private String firstName;
+    @Column(name="lastName", length = 255, nullable = false)
     private String lastName;
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return "Product{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     @Override
